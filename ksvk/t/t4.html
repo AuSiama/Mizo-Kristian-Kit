@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thlarau Thianghlim (Kan chhungah a awm tih hriatna) | Kristian Survival Kit</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Consistent Theme Colors */
+            --bg-color: #F8FAFC; 
+            --surface-color: #FFFFFF; 
+            --primary-blue: #1E3A8A; 
+            --accent-red: #DC2626; 
+            --accent-blue: #3B82F6; 
+            --success-green: #059669;
+            --text-main: #0F172A; 
+            --text-muted: #475569; 
+            --border-color: #E2E8F0; 
+            --gold-accent: #F59E0B;
+            
+            /* Typography */
+            --font-main: 'Inter', sans-serif;
+            
+            /* UI Elements */
+            --border-radius: 16px;
+            --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: var(--font-main); 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        .edu-container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        
+        .edu-header { 
+            background-color: var(--surface-color); 
+            border-radius: var(--border-radius); 
+            padding: 30px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--box-shadow); 
+            border-top: 5px solid var(--accent-blue); /* Blue for Holy Spirit/Peace */
+            text-align: center; 
+        }
+        
+        .category-tag { 
+            display: inline-block; 
+            background-color: rgba(59, 130, 246, 0.1); 
+            color: var(--accent-blue); 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            margin-bottom: 16px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        }
+        
+        .main-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+        .subtitle { font-size: 1.1rem; color: var(--primary-blue); font-weight: 500; margin-bottom: 20px; }
+        .intro-text { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
+        
+        .core-concepts-section { margin-bottom: 30px; }
+        .section-title { font-size: 1.4rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+
+        .accordion-item { 
+            background: var(--surface-color); 
+            border-radius: 12px; 
+            margin-bottom: 12px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+            border: 1px solid var(--border-color); 
+            overflow: hidden; 
+            transition: var(--transition); 
+        }
+        
+        .accordion-item:hover {
+            box-shadow: var(--box-shadow);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .accordion-header { 
+            width: 100%; 
+            text-align: left; 
+            padding: 20px; 
+            background: none; 
+            border: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            cursor: pointer; 
+            font-family: inherit; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: var(--text-main); 
+        }
+        
+        .accordion-icon { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 40px; 
+            height: 40px; 
+            background-color: rgba(59, 130, 246, 0.05); 
+            color: var(--accent-blue); 
+            border-radius: 10px; 
+            transition: var(--transition); 
+        }
+        
+        .accordion-item.active .accordion-icon { 
+            background-color: var(--accent-blue); 
+            color: white; 
+        }
+        
+        .accordion-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease-in-out; 
+            background-color: #FAFAFA; 
+        }
+        
+        .accordion-inner { padding: 0 20px 24px 76px; color: var(--text-muted); }
+        .accordion-inner ul { list-style-type: none; margin-top: 10px;}
+        .accordion-inner li { position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text-main); font-size: 0.95rem; }
+        .accordion-inner li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent-blue); font-size: 0.8rem; }
+
+        .highlight-box { 
+            background: linear-gradient(135deg, var(--primary-blue), #1e293b); 
+            color: white; 
+            padding: 24px; 
+            border-radius: var(--border-radius); 
+            margin-bottom: 30px; 
+            display: flex; 
+            gap: 20px; 
+            align-items: flex-start; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: var(--box-shadow); 
+        }
+        
+        .highlight-icon { 
+            font-size: 1.8rem; 
+            color: #FCD34D; 
+            background: rgba(255,255,255,0.1); 
+            width: 50px; 
+            height: 50px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            flex-shrink: 0; 
+            z-index: 1;
+        }
+        
+        .highlight-text { z-index: 1; }
+        
+        .data-section { background-color: var(--surface-color); padding: 24px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); }
+        .progress-track { width: 100%; height: 10px; background-color: var(--border-color); border-radius: 10px; overflow: hidden; margin-top: 8px; margin-bottom: 16px; }
+        .progress-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent-blue), #60A5FA); width: 0; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+        
+        .tooltip-trigger { border-bottom: 2px dotted var(--accent-blue); color: var(--accent-blue); font-weight: 600; cursor: help; }
+        .edu-tooltip { position: absolute; background-color: var(--text-main); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; max-width: 250px; z-index: 1000; opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+        .edu-tooltip.visible { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 600px) { 
+            .highlight-box { flex-direction: column; text-align: center; align-items: center; } 
+            .accordion-inner { padding: 0 16px 20px 16px; } 
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../../Index.html" class="back-home-btn">
+    <i class="fa-solid fa-house"></i> Home
+</a>
+
+<style>
+    .back-home-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #1E3A8A; /* Primary Blue */
+        color: #FFFFFF;
+        padding: 10px 18px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        z-index: 9999; /* Thil dang zawng zawng chunga a lan nan */
+    }
+
+    .back-home-btn:hover {
+        background-color: #DC2626; /* Accent Red */
+        color: #FFFFFF;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    /* Mobile aṭanga en pawha a mawi nan - Hnuai lamah a insawn ang */
+    @media (max-width: 600px) {
+        .back-home-btn {
+            top: auto;
+            bottom: 20px;
+            left: 20px;
+        }
+    }
+</style>
+    <div class="edu-container">
+        
+        <header class="edu-header">
+            <span class="category-tag">Kristian Survival Kit - 04</span>
+            <h1 class="main-title">Thlarau Thianghlim</h1>
+            <p class="subtitle">Kan chhungah a awm tih hriatna leh fiahna</p>
+            <p class="intro-text">
+                Isua Krista kan rin rualin, mahni ngawta khawvel hmachhawn turin min kalsan lova. Ama aiawh tur leh min awmpui reng turin Thlarau Thianghlim min pe a ni. Kan chhungrila <span class="tooltip-trigger" data-tooltip="Pathian Nung, ringtute chhungrila cheng leh kaihruaitu.">Pathian Nung</span> a cheng a ni tih chu engtin nge kan hriat theih ang? I lo zirchiang ang u.
+            </p>
+        </header>
+
+        <section class="core-concepts-section">
+            <h2 class="section-title"><i class="fa-solid fa-dove"></i> Zirtur thupuite</h2>
+
+            <!-- CONCEPT 1 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-heart-circle-check"></i></div>
+                        <span>1. Chhungril thlamuanna leh fiahna</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Rom 8:16 ah chuan "Thlarau ngei chuan, keimahni thlarau nên Pathian fate kan ni tih min hriattîr ṭhîn" tih kan hmu. Hei hi thil mak emaw feeling satliah nilovin, chhungril hriatna thuk tak a ni.</p>
+                        <ul>
+                            <li>Thilsual kan tih palh in hrehawm tihna leh sim duhna min nehtir (conviction) ṭhin.</li>
+                            <li>Pathian hnaih chakna leh biak chakna thinlung min pe ṭhin.</li>
+                            <li>Harsatna leh rinhlelhna karah pawh, chhandam kan ni tih thlamuanna min pe ṭhin a ni.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPT 2 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <span>2. Sual laka hnehna (Power)</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Mahni theihna a kan hneh theih loh sual thil te hi, Pathian puihna rinchhana kan hneh theih hian kan chhungah Thlarau Thianghlim a thawk tih a chiang a ni.</p>
+                        <ul>
+                            <li>Tisa chakna sual min dopui a, nun thianghlim min neihtir ṭhin.</li>
+                            <li>Nunhlui ṭhalo (addiction/habit) kalsan turin theihna leh chakna min pe ṭhin.</li>
+                            <li>Setana thlemna hmachhawn turin huaisenna leh Pathian thu hriatrengna min pe ṭhin.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPT 3 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <span>3. Thlarau rah</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Thingkung chu a rah ah a hriat theih ang hian, Thlarau Thianghlim hnathawh rahchhuah chu <span class="tooltip-trigger" data-tooltip="Thlarau rah erawh chu hmangaihna te, hlimna te, remna te, dawhtheihna te, ngilneihna te, ṭhatna te, rinawmna te, 23thuhnuairawlhna te, insûmtheihna te a ni zâwk e; chutiang kalh zâwngin Dân thupêk rêng a awm lo ve.">Galatia 5:22-23</span> a kan hmuh Thlarau rah aṭang hian a fiah ṭhin.</p>
+                        <ul>
+                            <li>Kan mizia pangngai nilo, mize ṭha zawk (hmangaihna, dawhtheihna, inngaihtlawmna) kan lo neih ṭan hian Thlarauvin hna a thawk tihna a ni.</li>
+                            <li>Mi dangte chunga ngilneihna leh zaidamna a lo piang ṭhin.</li>
+                            <li>Harsatna leh buaina karah pawh lawmna (joy), chhungrila hrihfiah theih si loh a awm tlat ṭhin.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPT 4 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <span>4. Pathian Thu hriatthiamna (Illumination)</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Thlarau Thianghlim chu "Thutak Thlarau" tih a ni a. Bible hi lehkhabu satliah anga chhiar liam mai lovin, a nungin min hriatthiamtir ṭhin a ni.</p>
+                        <ul>
+                            <li>Bible chang kan chhiar in kan nunah a rawn nung chhuak (Rhema) ṭhin.</li>
+                            <li>Pathian duhzawng leh a lungawina tur thlan thiamna (discernment) min pe ṭhin.</li>
+                            <li>Thutak kawngah min hruai lutin, zirtirna diklo lakah min veng ṭhin a ni.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="highlight-box">
+            <div class="highlight-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+            <div class="highlight-text">
+                <h3 style="color:#FCD34D; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">I hria em? 'Parakletos'</h3>
+                <p>Grik ṭawngin Thlarau Thianghlim hi <strong>'Parakletos'</strong> tia koh a ni a. A awmzia chu "Kan kianga awm tura koh, Thlamuantu, Ṭanpuitu, leh min Sawi-sak-tu (Advocate)" tihna a ni. Khawvelah hian mal takin i awm ngai lo, Engkimtitheia chu i chhungah a cheng reng a ni!</p>
+            </div>
+        </aside>
+
+        <section class="data-section">
+            <h2 class="section-title" style="font-size: 1.2rem; margin-bottom: 20px;"><i class="fa-solid fa-chart-bar"></i> Thlarau Thianghlim hnathawh Tehfung</h2>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem;">
+                    <span>Mahni theihna ngawta sual hneh theihna</span>
+                    <span style="color:var(--text-muted);">0%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" data-width="0%" style="background:#475569;"></div></div>
+            </div>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem;">
+                    <span>Thlarau Thianghlim ṭanpuinaa hneh theihna</span>
+                    <span style="color:var(--primary-blue);">100%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" data-width="100%" style="background:var(--primary-blue);"></div></div>
+            </div>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem;">
+                    <span>Pathian Nung kan chhungrila a awm reng fiahna (Assurance)</span>
+                    <span style="color:var(--success-green);">100%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" data-width="100%" style="background:var(--success-green);"></div></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Accordion Logic
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (this.parentElement.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+
+            // Open first accordion by default
+            if(accordions.length > 0) accordions[0].click();
+
+            // Progress Bar Animation
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(fill => {
+                    fill.style.width = fill.getAttribute('data-width');
+                });
+            }, 600);
+
+            // Tooltip Logic
+            const tooltipBox = document.createElement('div');
+            tooltipBox.className = 'edu-tooltip';
+            document.body.appendChild(tooltipBox);
+
+            document.querySelectorAll('.tooltip-trigger').forEach(trigger => {
+                const showTooltip = (e) => {
+                    tooltipBox.textContent = e.target.getAttribute('data-tooltip');
+                    const rect = e.target.getBoundingClientRect();
+                    let top = rect.top + window.scrollY - tooltipBox.offsetHeight - 10;
+                    let left = rect.left + window.scrollX + (rect.width / 2) - (tooltipBox.offsetWidth / 2);
+                    
+                    if (left < 10) left = 10;
+                    if (left + tooltipBox.offsetWidth > window.innerWidth - 10) left = window.innerWidth - tooltipBox.offsetWidth - 10;
+
+                    tooltipBox.style.top = `${top}px`;
+                    tooltipBox.style.left = `${left}px`;
+                    tooltipBox.classList.add('visible');
+                };
+                const hideTooltip = () => tooltipBox.classList.remove('visible');
+
+                trigger.addEventListener('mouseenter', showTooltip);
+                trigger.addEventListener('touchstart', showTooltip, {passive: true});
+                trigger.addEventListener('mouseleave', hideTooltip);
+                trigger.addEventListener('touchend', hideTooltip);
+            });
+        });
+    </script>
+</body>
+</html>

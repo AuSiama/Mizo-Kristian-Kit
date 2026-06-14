@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saltanna Aṭanga Zalenna | Kristian Survival Kit</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Consistent Theme Colors */
+            --bg-color: #F8FAFC; 
+            --surface-color: #FFFFFF; 
+            --primary-blue: #1E3A8A; 
+            --accent-red: #DC2626; 
+            --accent-blue: #3B82F6; 
+            --success-green: #059669;
+            --text-main: #0F172A; 
+            --text-muted: #475569; 
+            --border-color: #E2E8F0; 
+            --gold-accent: #F59E0B;
+            
+            /* Typography */
+            --font-main: 'Inter', sans-serif;
+            
+            /* UI Elements */
+            --border-radius: 16px;
+            --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: var(--font-main); 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        .edu-container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        
+        .edu-header { 
+            background-color: var(--surface-color); 
+            border-radius: var(--border-radius); 
+            padding: 30px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--box-shadow); 
+            border-top: 5px solid var(--success-green); /* Green to signify freedom/healing */
+            text-align: center; 
+        }
+        
+        .category-tag { 
+            display: inline-block; 
+            background-color: rgba(5, 150, 105, 0.1); 
+            color: var(--success-green); 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            margin-bottom: 16px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        }
+        
+        .main-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+        .subtitle { font-size: 1.1rem; color: var(--primary-blue); font-weight: 500; margin-bottom: 20px; }
+        .intro-text { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
+        
+        .core-concepts-section { margin-bottom: 30px; }
+        .section-title { font-size: 1.4rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+
+        .accordion-item { 
+            background: var(--surface-color); 
+            border-radius: 12px; 
+            margin-bottom: 12px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+            border: 1px solid var(--border-color); 
+            overflow: hidden; 
+            transition: var(--transition); 
+        }
+        
+        .accordion-item:hover {
+            box-shadow: var(--box-shadow);
+            border-color: rgba(5, 150, 105, 0.3);
+        }
+        
+        .accordion-header { 
+            width: 100%; 
+            text-align: left; 
+            padding: 20px; 
+            background: none; 
+            border: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            cursor: pointer; 
+            font-family: inherit; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: var(--text-main); 
+        }
+        
+        .accordion-icon { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 40px; 
+            height: 40px; 
+            background-color: rgba(5, 150, 105, 0.05); 
+            color: var(--success-green); 
+            border-radius: 10px; 
+            transition: var(--transition); 
+        }
+        
+        .accordion-item.active .accordion-icon { 
+            background-color: var(--success-green); 
+            color: white; 
+        }
+        
+        .accordion-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease-in-out; 
+            background-color: #FAFAFA; 
+        }
+        
+        .accordion-inner { padding: 0 20px 24px 76px; color: var(--text-muted); }
+        .accordion-inner ul { list-style-type: none; margin-top: 10px;}
+        .accordion-inner li { position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text-main); font-size: 0.95rem; }
+        .accordion-inner li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--success-green); font-size: 0.8rem; }
+
+        .highlight-box { 
+            background: linear-gradient(135deg, var(--text-main), #1e293b); 
+            color: white; 
+            padding: 24px; 
+            border-radius: var(--border-radius); 
+            margin-bottom: 30px; 
+            display: flex; 
+            gap: 20px; 
+            align-items: flex-start; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: var(--box-shadow); 
+        }
+        
+        .highlight-icon { 
+            font-size: 1.8rem; 
+            color: #34D399; 
+            background: rgba(255,255,255,0.1); 
+            width: 50px; 
+            height: 50px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            flex-shrink: 0; 
+            z-index: 1;
+        }
+        
+        .highlight-text { z-index: 1; }
+        
+        .data-section { background-color: var(--surface-color); padding: 24px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); }
+        .progress-track { width: 100%; height: 10px; background-color: var(--border-color); border-radius: 10px; overflow: hidden; margin-top: 8px; margin-bottom: 16px; }
+        .progress-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--success-green), #10B981); width: 0; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+        
+        .tooltip-trigger { border-bottom: 2px dotted var(--success-green); color: var(--success-green); font-weight: 600; cursor: help; }
+        .edu-tooltip { position: absolute; background-color: var(--text-main); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; max-width: 250px; z-index: 1000; opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+        .edu-tooltip.visible { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 600px) { 
+            .highlight-box { flex-direction: column; text-align: center; align-items: center; } 
+            .accordion-inner { padding: 0 16px 20px 16px; } 
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../../Index.html" class="back-home-btn">
+    <i class="fa-solid fa-house"></i> Home
+</a>
+
+<style>
+    .back-home-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #1E3A8A; /* Primary Blue */
+        color: #FFFFFF;
+        padding: 10px 18px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        z-index: 9999; /* Thil dang zawng zawng chunga a lan nan */
+    }
+
+    .back-home-btn:hover {
+        background-color: #DC2626; /* Accent Red */
+        color: #FFFFFF;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    /* Mobile aṭanga en pawha a mawi nan - Hnuai lamah a insawn ang */
+    @media (max-width: 600px) {
+        .back-home-btn {
+            top: auto;
+            bottom: 20px;
+            left: 20px;
+        }
+    }
+</style>
+    <div class="edu-container">
+        
+        <header class="edu-header">
+            <span class="category-tag">Kristian Survival Kit - 06</span>
+            <h1 class="main-title">Saltanna aṭanga zalenna</h1>
+            <p class="subtitle">Sual inphum nghet (Addiction/Habit) aṭanga chhuah zalena awm dan</p>
+            <p class="intro-text">
+                Kan nunah sual inphum nghet, sim kan duh ngawih ngawih pawha kan theih loh <span class="tooltip-trigger" data-tooltip="Mahni inthunun theihna hloh khawpa thil pakhata fihlim theih lohna.">(addiction)</span> a awm ṭhin. Heng saltanna lakah hian theihna mai ni lovin, Pathian hmanrua kan mamawh a ni. Isuan "Fapain a tih zalen che u chuan, in zalen takzet ang" a ti. Engtin nge chu zalenna chu kan chan theih ang?
+            </p>
+        </header>
+
+        <section class="core-concepts-section">
+            <h2 class="section-title"><i class="fa-solid fa-person-walking-arrow-right"></i> Zirtur thupuite</h2>
+
+            <!-- CONCEPT 1 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-lock-open"></i></div>
+                        <span>1. Inpuanchhuahna leh pawmna</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Hma kan sawn theih nan kan dinhmun dik tak kan pawm a ngai hmasa ber. "Zep ṭhen nei lovin sual lakah ka tang a ni" tih inpuanchhuah hi zalenna kawngkhar a ni.</p>
+                        <ul>
+                            <li>Mahni insawi thiamna leh midang puhna kalsan a, mawhphurhna lak tur.</li>
+                            <li>Pathian hmaah leh mi rintlak (mentor/pastor) hnenah inpuanchhuah ngam tur <span class="tooltip-trigger" data-tooltip="Chutichuan, tihdama in awm theih nân in sualte thupha chawi tawn ula, inṭawngṭaisak tawn ṭhîn rawh u.
+Mi fel ṭawngṭaina chuan thil nasa tak a ti ṭhîn.">.</span></li>
+                            <li>Thupbo emaw zep ruk tlatna hian sual chu chakna a pe ṭhin a ni.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPT 2 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-microscope"></i></div>
+                        <span>2. A bulṭhut hriatchhuah (Root Cause)</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Tisa chakna ringawt aiin, chu sual ti tura min nawrtu chhungril na (pain, trauma, ruakna) a awm ṭhin. Chu bulṭhut chu zawn chhuah a ngai.</p>
+                        <ul>
+                            <li>Engtikah nge he thil hi ka tih chakna a zual ṭhin? (Lungngaih laiin, mal ngawih ngawiha in hriat laiin?) tih inen fiah tur.</li>
+                            <li>Kan chhungrila ruakna hi Pathian chauh lo chuan a hnawhkhat thei lo.</li>
+                            <li>Setanan he kan chaklohna hi hmanrua ah a hmang ṭhin tih hriat chian tur.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPT 3 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-road-barrier"></i></div>
+                        <span>3. Kalphung thar siam (Boundaries)</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Sual hnawl ringawt a tawk lova, thil ṭhaa thlak thleng (replace) a ngai a ni. Tlanchhiatna tur hmunah chuan tlan chhiat mai tur a ni.</p>
+                        <ul>
+                            <li>Sual lama min hruai theitu <span class="tooltip-trigger" data-tooltip="Sual ti tura min tiphur leh thlem theitu thil, hmun emaw hun.">thlemna</span> lakah daidanna (boundaries) khauh tak siam tur.</li>
+                            <li>Thil ṭhalo tih chakna a lo luhin, thil dang (ṭawngṭai, exercise, hla ngaihthlak) hmanga thlakthleng tur.</li>
+                            <li>Fimkhurna hi hlauhna a ni lova, finna a ni zawk <span class="tooltip-trigger" data-tooltip="Mi hmanghria chuan thil ṭha lo
+chu a hmuhin a biru ṭhîn a;
+Mi mâwl erawh chuan a tâwn
+mai ṭhîn a, a tuar phah ṭhîn.">Thufingte 22:3</span>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPT 4 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div class="accordion-icon"><i class="fa-solid fa-link"></i></div>
+                        <span>4. Pathian nena inzawmna tihngheh</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <p>Johana 15-ah Isuan, "Keimahah awm reng rawh u... keimah lovin eng mah in ti thei si lo" a ti a. Mahni chakna ngawtin saltanna (addiction) a hneh theih loh.</p>
+                        <ul>
+                            <li>Nitin Bible chhiar leh ṭawngṭaina hmanga thlarau lam tihchak a ngai.</li>
+                            <li>Hnehna chu vawilehkhata lo thleng vek nghal ni lovin, nitina hnehna hmuh chhoh zel (process) a ni thei tih pawm tur.</li>
+                            <li>I tluk palh pawhin, indawm kun lovin Isua hnenah kir leh nghal zel rawh.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="highlight-box">
+            <div class="highlight-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="highlight-text">
+                <h3 style="color:#34D399; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">I hria em? 'Neuroplasticity' leh Pathian Thu</h3>
+                <p>Science chuan kan thluak hi ngaihtuahna thar hmangin a zia a inthlak (rewire) thei tih a hmuchhuak a, chu chu <strong>'Neuroplasticity'</strong> an ti. Hei hi Bible-in Rom 12:2-a <em>"in rilru a thara awmin lo danglam zâwk tawh rawh u."</em> a tih nen hian a inmil chiah a ni! Pathian thu a thluak chawm reng hian zawi zawiin kan sual chakna hlui a ti reh ṭhin.</p>
+            </div>
+        </aside>
+
+        <section class="data-section">
+            <h2 class="section-title" style="font-size: 1.2rem; margin-bottom: 20px;"><i class="fa-solid fa-chart-line"></i> Zalenna zinkawng tehfung</h2>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem;">
+                    <span>Mahni theihna ngawta sual thlah theihna</span>
+                    <span style="color:var(--text-muted);">5%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" data-width="5%" style="background:#475569;"></div></div>
+            </div>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem;">
+                    <span>Pathian hmanrua leh ringtu pui te puihna nena hneh theihna</span>
+                    <span style="color:var(--success-green);">100%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" data-width="100%" style="background:var(--success-green);"></div></div>
+            </div>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem;">
+                    <span>Tluk palh hnua beidawng lova thawhleh nghal zel theihna</span>
+                    <span style="color:var(--primary-blue);">100%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" data-width="100%" style="background:var(--primary-blue);"></div></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Accordion Logic
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (this.parentElement.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+
+            // Open first accordion by default
+            if(accordions.length > 0) accordions[0].click();
+
+            // Progress Bar Animation
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(fill => {
+                    fill.style.width = fill.getAttribute('data-width');
+                });
+            }, 600);
+
+            // Tooltip Logic
+            const tooltipBox = document.createElement('div');
+            tooltipBox.className = 'edu-tooltip';
+            document.body.appendChild(tooltipBox);
+
+            document.querySelectorAll('.tooltip-trigger').forEach(trigger => {
+                const showTooltip = (e) => {
+                    tooltipBox.textContent = e.target.getAttribute('data-tooltip');
+                    const rect = e.target.getBoundingClientRect();
+                    let top = rect.top + window.scrollY - tooltipBox.offsetHeight - 10;
+                    let left = rect.left + window.scrollX + (rect.width / 2) - (tooltipBox.offsetWidth / 2);
+                    
+                    if (left < 10) left = 10;
+                    if (left + tooltipBox.offsetWidth > window.innerWidth - 10) left = window.innerWidth - tooltipBox.offsetWidth - 10;
+
+                    tooltipBox.style.top = `${top}px`;
+                    tooltipBox.style.left = `${left}px`;
+                    tooltipBox.classList.add('visible');
+                };
+                const hideTooltip = () => tooltipBox.classList.remove('visible');
+
+                trigger.addEventListener('mouseenter', showTooltip);
+                trigger.addEventListener('touchstart', showTooltip, {passive: true});
+                trigger.addEventListener('mouseleave', hideTooltip);
+                trigger.addEventListener('touchend', hideTooltip);
+            });
+        });
+    </script>
+</body>
+</html>
